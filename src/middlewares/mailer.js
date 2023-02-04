@@ -38,10 +38,10 @@ const sendEmail = {
       //     expiresIn: '100 Days'
       // })
       const info = await transporter.sendMail({
-          from:'"FoodRecipe" <candrajulius24@gmail.com>',
-          to: data.email,
-          subject: 'User Activation',
-          text: `${URL}/activate/${token}/${data.id}`
+        from: process.env.MAIL_USERNAME,
+        to: email,
+        subject: `Verification account OTP`,
+        text: `Hello this is your otp ${data.otp} you can go back to Izdihar Website welcome.`,
       })
       console.log('Message sent: %s', info.messageId)
   }

@@ -39,7 +39,7 @@ const sendEmail = {
       // })
       const info = await transporter.sendMail({
         from: process.env.MAIL_USERNAME,
-        to: email,
+        to: data.email,
         subject: `Verification account OTP`,
         text: `Hello this is your otp ${data.otp} you can go back to Izdihar Website welcome.`,
       })

@@ -50,12 +50,9 @@ exports.insertUsers = async (req, res) => {
     try {
       const result = await userModel.insertData(data);
       if (result) {
-        const sendEmail = email(data.email, otp, data.name);
-        if (sendEmail) {
-            return res.send({message: 'email not send'})
-        }else{
-            commonHelper.response(res, 'success to send', 'sucess', 200, 'send email success please check your email to verify')
-        }
+        email(data.email, otp, data.name);
+        console.log(sendEmail);
+        commonHelper.response(res, 'success to send', 'sucess', 200, 'send email success please check your email to verify')
       }
     } catch (err) {
         return res.send({message: 'register failed', err})

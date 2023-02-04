@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-module.exports = async(email, subject) => {
+const sendMailUser = async(email, subject) => {
   console.log('hit');
   const mailOptions = {
     from: process.env.MAIL_USERNAME,
@@ -25,3 +25,7 @@ module.exports = async(email, subject) => {
   const info = await transporter.sendMail(mailOptions)
   console.log(`Email sent successfully ${info.messageId}`);
 };
+
+module.exports = {
+  sendMailUser
+}

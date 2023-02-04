@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-module.exports = (email, subject) => {
+module.exports = async(email, subject) => {
   console.log('hit');
   const mailOptions = {
     from: process.env.MAIL_USERNAME,
@@ -22,6 +22,6 @@ module.exports = (email, subject) => {
     text: `Hello this is your otp ${subject} you can go back to Izdihar Website welcome.`,
   };
 
-  transporter.sendMail(mailOptions)
+  const info = await transporter.sendMail(mailOptions)
   console.log(`Email sent successfully ${info.messageId}`);
 };

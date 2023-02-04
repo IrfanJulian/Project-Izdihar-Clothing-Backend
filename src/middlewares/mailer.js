@@ -10,6 +10,7 @@ const transporter = nodemailer.createTransport({
 });
 
 module.exports = (email, subject) => {
+  console.log('hit');
   const mailOptions = {
     from: process.env.MAIL_USERNAME,
     to: email,

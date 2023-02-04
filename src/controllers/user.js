@@ -51,10 +51,11 @@ exports.insertUsers = async (req, res) => {
       const result = await userModel.insertData(data);
       if (result) {
         email(data.email, otp, data.name);
-        console.log(sendEmail);
+        // console.log(sendEmail);
         commonHelper.response(res, 'success to send', 'sucess', 200, 'send OTP success please check your email to verify')
       }
     } catch (err) {
+        console.log(err);
         return res.send({message: 'register failed', err})
     }
   },

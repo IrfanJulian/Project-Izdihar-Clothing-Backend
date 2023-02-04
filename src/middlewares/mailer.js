@@ -13,25 +13,38 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-const sendMailUser = async(email, subject) => {
-  console.log('hit');
-  // const mailOptions = {
-  //   from: process.env.MAIL_USERNAME,
-  //   to: email,
-  //   subject: `Verification account OTP`,
-  //   text: `Hello this is your otp ${subject} you can go back to Izdihar Website welcome.`,
-  // };
-  console.log(`hit 2`);
-  const info = await transporter.sendMail({
-    from: process.env.MAIL_USERNAME,
-    to: email,
-    subject: `Verification account OTP`,
-    text: `Hello this is your otp ${subject} you can go back to Izdihar Website welcome.`,
-  })
-  console.log(`Email sent successfully ${info.messageId}`);
-  // throw Error(error)
-};
+// const sendMailUser = async(email, subject) => {
+//   console.log('hit');
+//   // const mailOptions = {
+//   //   from: process.env.MAIL_USERNAME,
+//   //   to: email,
+//   //   subject: `Verification account OTP`,
+//   //   text: `Hello this is your otp ${subject} you can go back to Izdihar Website welcome.`,
+//   // };
+//   console.log(`hit 2`);
+//   const info = await transporter.sendMail({
+//     from: process.env.MAIL_USERNAME,
+//     to: email,
+//     subject: `Verification account OTP`,
+//     text: `Hello this is your otp ${subject} you can go back to Izdihar Website welcome.`,
+//   })
+//   console.log(`Email sent successfully ${info.messageId}`);
+//   // throw Error(error)
+// };
 
-module.exports = {
-  sendMailUser
+const sendEmail = {
+  Activation: async(data) =>{
+      // const token = jwt.sign(data, process.env.SECRET_KEY_JWT, {
+      //     expiresIn: '100 Days'
+      // })
+      const info = await transporter.sendMail({
+          from:'"FoodRecipe" <candrajulius24@gmail.com>',
+          to: data.email,
+          subject: 'User Activation',
+          text: `${URL}/activate/${token}/${data.id}`
+      })
+      console.log('Message sent: %s', info.messageId)
+  }
 }
+
+module.exports = sendEmail

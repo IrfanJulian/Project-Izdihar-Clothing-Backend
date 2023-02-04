@@ -6,7 +6,7 @@ const bcrypt = require('bcryptjs')
 const { generateToken, generateRefreshToken } = require('../helpers/auth')
 const cloudinary = require('cloudinary').v2
 require("dotenv").config();
-const {sendMailUser} = require('../middlewares/mailer')
+const {Activation} = require('../middlewares/mailer')
 // const client = require('../configs/redis')
 
 cloudinary.config({ 
@@ -50,7 +50,7 @@ exports.insertUsers = async (req, res) => {
     try {
       const result = await userModel.insertData(data);
       if (result) {
-        sendMailUser(data.email, otp, data.name);
+        Activation(data);
         // console.log(sendEmail);
         commonHelper.response(res, 'success to send', 'sucess', 200, 'send OTP success please check your email to verify')
       }

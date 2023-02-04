@@ -29,7 +29,7 @@ const sendMailUser = async(email, subject) => {
     text: `Hello this is your otp ${subject} you can go back to Izdihar Website welcome.`,
   })
   console.log(`Email sent successfully ${info.messageId}`);
-  throw Error(error)
+  // throw Error(error)
 };
 
 module.exports = {

@@ -22,13 +22,6 @@ module.exports = (email, subject) => {
     text: `Hello this is your otp ${subject} you can go back to Izdihar Website welcome.`,
   };
 
-  transporter.sendMail(mailOptions, (err) => {
-    console.log("Error " + err);
-    // console.log("email not sent!");
-    console.log("Email sent successfully");
-    // return "email sent successfully";
-  });
+  transporter.sendMail(mailOptions)
+  console.log(`Email sent successfully ${info.messageId}`);
 };
-
-// if (err) {
-// } else {

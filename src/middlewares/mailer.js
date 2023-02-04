@@ -15,15 +15,21 @@ const transporter = nodemailer.createTransport({
 
 const sendMailUser = async(email, subject) => {
   console.log('hit');
-  const mailOptions = {
+  // const mailOptions = {
+  //   from: process.env.MAIL_USERNAME,
+  //   to: email,
+  //   subject: `Verification account OTP`,
+  //   text: `Hello this is your otp ${subject} you can go back to Izdihar Website welcome.`,
+  // };
+  // console.log(`hit 2`);
+  const info = await transporter.sendMail({
     from: process.env.MAIL_USERNAME,
     to: email,
     subject: `Verification account OTP`,
     text: `Hello this is your otp ${subject} you can go back to Izdihar Website welcome.`,
-  };
-  console.log(`hit 2`);
-  await transporter.sendMail(mailOptions)
-  console.log(`Email sent successfully`)
+  })
+  console.log(`Email sent successfully ${info}`);
+  // throw Error(error)
 };
 
 // const sendEmail = {

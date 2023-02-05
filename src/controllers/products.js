@@ -15,7 +15,7 @@ cloudinary.config({
       try {
         const search = req.query.search || '';
         const page = parseInt(req.query.page) || 1;
-        const limit = parseInt(req.query.limit) || 10;
+        const limit = parseInt(req.query.limit) || 5;
         const offset = (page - 1) * limit || 0;
         const sortBy = req.query.sortBy || 'id';
         const sortList = req.query.sortList || 'asc';
@@ -62,10 +62,10 @@ cloudinary.config({
     }
 
     exports.insertProduct = async(req,res) =>{
-      const {name, id_seller, category, brand, description, stock, price, size} = req.body
+      const {name, description, brand, category, stock, price, size} = req.body
       const photo = req.file
       const image = await cloudinary.uploader.upload(photo.path)
-      const data = {name, id_seller, category, brand, description, stock, price, size, photo: image.secure_url}
+      const data = {name, description, photo: image.secure_url, brand, category, stock, price, size}
       // console.log(data);
       try {
         await productModel.insert(data)

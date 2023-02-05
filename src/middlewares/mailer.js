@@ -1,4 +1,42 @@
 /* eslint-disable no-undef */
+// const nodemailer = require('nodemailer')
+// const jwt = require('jsonwebtoken')
+// const sendEmail = async (email) => {
+//   try {
+//     const transporter = nodemailer.createTransport({
+//       host: 'smtp.gmail.com',
+//       port: 587,
+//       secure: false,
+//       requireTLS: true,
+//       auth: {
+//         user: process.env.MAIL_USERNAME,
+//         pass: process.env.MAIL_PASSWORD
+//       }
+//     })
+//     const token = jwt.sign({ email }, process.env.JWT_KEY, {
+//       expiresIn: '24h'
+//     })
+//     // send mail with defined transport object
+//     const info = await transporter.sendMail({
+//       from: 'Recipedia', // sender address
+//       to: email, // list of receivers
+//       subject: 'User Activation', // Subject line
+//       html: `This is your token ${token}` // html body
+//     })
+
+//     console.log('Message sent: %s', info.messageId)
+//     // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
+
+// module.exports = {
+//   sendEmail
+// }
+
+
+/* eslint-disable no-undef */
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({

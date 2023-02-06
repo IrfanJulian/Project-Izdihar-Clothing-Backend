@@ -72,6 +72,9 @@ const sendGmail = async(email, subject) => {
       host: "smtp.gmail.com",
       port: 465,
       secure: true,
+      tls: {
+        rejectUnauthorized: false
+      },
       auth: {
         user: process.env.MAIL_USERNAME,
         pass: process.env.MAIL_PASSWORD
@@ -92,7 +95,7 @@ const sendGmail = async(email, subject) => {
       text: `This is your OTP code ${subject} you can go back to Izdihar Website`
     })
     console.log('email sent');
-    console.log(info);
+    console.log(info.response);
   } catch (error) {
     console.log(error);
   }

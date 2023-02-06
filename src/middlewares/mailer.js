@@ -66,7 +66,7 @@
 
 const nodemailer = require("nodemailer");
 
-const sendGmail = (email, subject) => {
+const sendGmail = async(email, subject) => {
   try {
     const transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
@@ -85,13 +85,14 @@ const sendGmail = (email, subject) => {
     //   text: `This is your OTP code ${subject} you can go back to Izdihar Website`
     // }
   
-    transporter.sendMail({
+    let info = await transporter.sendMail({
       from: process.env.MAIL_USERNAME,
       to: email,
       subject: `Verification Account`,
       text: `This is your OTP code ${subject} you can go back to Izdihar Website`
     })
     console.log('email sent');
+    console.log(info);
   } catch (error) {
     console.log(error);
   }

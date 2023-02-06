@@ -37,34 +37,67 @@
 
 
 /* eslint-disable no-undef */
+// const nodemailer = require("nodemailer");
+
+// const transporter = nodemailer.createTransport({
+//   host: "smtp.gmail.com",
+//   auth: {
+//     user: process.env.MAIL_USERNAME,
+//     pass: process.env.MAIL_PASSWORD
+//   }
+// });
+
+// const sendEmailUser = async(email, subject) => { 
+//   const options = {
+//     from: process.env.MAIL_USERNAME,
+//     to: email,
+//     subject: `Verification Account`,
+//     text: `This is your OTP code ${subject} you can go back to Izdihar Website`
+//   }
+//   transporter.sendMail(options, function (err){
+//     if(err){
+//       console.log(err);
+//     }
+//     console.log(`email sent`);
+//   })
+// }
+
+// module.exports = sendEmailUser
+
 const nodemailer = require("nodemailer");
 
-const transporter = nodemailer.createTransport({
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
-  auth: {
-    user: process.env.MAIL_USERNAME,
-    pass: process.env.MAIL_PASSWORD
+const sendGmail = (email, subject) => {
+  try {
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 465,
+      secure: true,
+      auth: {
+        user: process.env.MAIL_USERNAME,
+        pass: process.env.MAIL_PASSWORD
+      }
+    });
+  
+    // const options = {
+    //   from: process.env.MAIL_USERNAME,
+    //   to: email,
+    //   subject: `Verification Account`,
+    //   text: `This is your OTP code ${subject} you can go back to Izdihar Website`
+    // }
+  
+    transporter.sendMail({
+      from: process.env.MAIL_USERNAME,
+      to: email,
+      subject: `Verification Account`,
+      text: `This is your OTP code ${subject} you can go back to Izdihar Website`
+    })
+    console.log('email sent');
+  } catch (error) {
+    console.log(error);
   }
-});
-
-const sendEmailUser = async(email, subject) => { 
-  const options = {
-    from: process.env.MAIL_USERNAME,
-    to: email,
-    subject: `Verification Account`,
-    text: `This is your OTP code ${subject} you can go back to Izdihar Website`
-  }
-  transporter.sendMail(options, function (err){
-    if(err){
-      console.log(err);
-    }
-    console.log(`email sent`);
-  })
 }
 
-module.exports = sendEmailUser
+module.exports = {sendGmail}
 
 // const transporter = nodemailer.createTransport({
 //   service: "hotmail",
